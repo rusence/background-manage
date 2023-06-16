@@ -49,7 +49,7 @@
       </el-card>
       <div class="graph">
         <el-card ref="echarts_2" id="echarts_2" style="height: 260px"></el-card>
-        <el-card></el-card>
+        <el-card id="echarts_3" style="height: 260px;"></el-card>
       </div>
     </el-col>
   </el-row>
@@ -113,7 +113,7 @@ export default {
       const { tableData } = data.data
       this.tableData = tableData
       const echarts_1 = echarts.init(this.$refs.echarts_1)
-      const { orderData, userData } = data.data
+      const { orderData, userData ,videoData} = data.data
       const xAxis = Object.keys(orderData.data[0])
       var echarts1Option = {
         xAxis: {
@@ -185,6 +185,28 @@ export default {
         ],
       }
       echarts_2.setOption(echarts2Option)
+      const echarts_3 = echarts.init(document.getElementById('echarts_3'))
+            const eachrts3Option = {
+                tooltip: {
+                    trigger: "item",
+                },
+                color: [
+                    "#0f78f4",
+                    "#dd536b",
+                    "#9462e5",
+                    "#a6a6a6",
+                    "#e1bb22",
+                    "#39c362",
+                    "#3ed1cf",
+                ],
+                series: [
+                    {
+                        data: videoData,
+                        type: 'pie'
+                    }
+                ],
+            }
+            echarts_3.setOption(eachrts3Option)
     })
   },
 }
